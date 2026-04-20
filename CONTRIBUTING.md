@@ -38,10 +38,11 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 git clone https://github.com/Nishant2209/fluxguard.git
 cd fluxguard
 node --version   # must be >= 18
-node --test      # all tests should pass on a clean checkout
+npm install      # installs dev dependencies (ESLint)
+npm run build    # lint + full test suite — must be green on a clean checkout
 ```
 
-There is no install step because there are no dependencies.
+> **Note:** The library itself has zero production dependencies. `npm install` only pulls in dev tooling (ESLint). If you don't need linting, you can skip it and run `node --test` directly.
 
 ---
 
@@ -50,9 +51,25 @@ There is no install step because there are no dependencies.
 1. **Fork** the repository and create your branch from `main`.
 2. Name branches descriptively: `feat/sliding-window-cost`, `fix/token-bucket-refill-edge`, `test/leaky-bucket-reset`.
 3. Make your changes, keeping commits small and focused.
-4. Run the full test suite before opening a PR: `node --test`
-5. Run the linter: `npx eslint .`
-6. Open a pull request against `main`.
+4. Run the full build before opening a PR: `npm run build`
+5. Open a pull request against `main`.
+
+### Build
+
+`npm run build` is the single command that validates everything:
+
+```bash
+npm run build   # runs: npm run lint && npm run test
+```
+
+It runs lint first, then the full test suite. Both must be green before a PR is opened. You can also run each step individually:
+
+```bash
+npm run lint        # ESLint only
+npm run lint:fix    # ESLint with auto-fix
+npm test            # node:test runner only
+npm run test:watch  # re-runs tests on file change
+```
 
 **Never commit directly to `main`.** All changes go through pull requests.
 
@@ -94,7 +111,7 @@ The interface defined in `CLAUDE.md` under "Core API Contract" is the public sur
 Run all tests:
 
 ```bash
-node --test
+npm test
 ```
 
 Run a single file:
@@ -136,9 +153,8 @@ docs(contributing): clarify clock abstraction requirement
 
 ## Pull Request Process
 
-1. Ensure the test suite passes: `node --test`
-2. Ensure the linter passes: `npx eslint .`
-3. Fill out the PR template completely — incomplete PRs will be returned.
+1. Ensure the full build passes: `npm run build` (lint + tests)
+2. Fill out the PR template completely — incomplete PRs will be returned.
 4. Link the relevant issue in the PR description.
 5. Keep PRs focused: one logical change per PR. Large PRs are harder to review and slower to merge.
 6. A maintainer will review within a few business days. Address all review comments before the PR is merged.
@@ -146,8 +162,7 @@ docs(contributing): clarify clock abstraction requirement
 
 ### PR Checklist
 
-- [ ] Tests pass (`node --test`)
-- [ ] Linter passes (`npx eslint .`)
+- [ ] Build passes (`npm run build` — lint + tests)
 - [ ] New/changed behaviour is covered by tests
 - [ ] `CLAUDE.md` updated if public API or directory structure changed
 - [ ] No new production dependencies added

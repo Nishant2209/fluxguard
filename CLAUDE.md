@@ -53,23 +53,34 @@ When adding a new algorithm or module, follow this layout exactly. Do not create
 ## Commands
 
 ```bash
+# Full build — lint then test (run this before every commit or PR)
+npm run build
+
 # Run all tests
-node --test
+npm test
 
 # Run a single test file
 node --test test/token-bucket.test.js
 
 # Run tests in watch mode
-node --test --watch
+npm run test:watch
 
 # Lint
-npx eslint .
+npm run lint
 
 # Lint and auto-fix
-npx eslint . --fix
+npm run lint:fix
 ```
 
-There is no build step. The library runs directly from source.
+### Build
+
+`npm run build` is the canonical pre-publish / CI validation step. It runs lint first and then the full test suite in sequence:
+
+```
+lint → test
+```
+
+The library ships directly from source — there is no compilation or transpilation. "Build" in this project means **verification**, not transformation. A green `npm run build` is the gate for every pull request and release.
 
 ---
 

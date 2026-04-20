@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
+    "build": "npm run lint && npm run test",
     "test": "node --test",
     "test:watch": "node --test --watch",
     "lint": "eslint .",
