@@ -1,0 +1,28 @@
+{
+  "name": "fluxguard",
+  "version": "0.1.0",
+  "description": "A zero-dependency Node.js rate limiting library implementing Token Bucket, Leaky Bucket, Fixed Window, and Sliding Window algorithms with optional file-based persistence and HTTP middleware adapters.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "rate-limiter",
+    "rate-limiting",
+    "token-bucket",
+    "leaky-bucket",
+    "sliding-window",
+    "throttle",
+    "middleware"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {}
+}
