@@ -35,7 +35,7 @@ This project follows the [Contributor Covenant Code of Conduct](https://www.cont
 ### Setup
 
 ```bash
-git clone https://github.com/<your-org>/fluxguard.git
+git clone https://github.com/Nishant2209/fluxguard.git
 cd fluxguard
 node --version   # must be >= 18
 node --test      # all tests should pass on a clean checkout
